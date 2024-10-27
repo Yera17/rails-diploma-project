@@ -1,2 +1,24 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+
+<div class="banner">
+<%# image_tag "banner.png", alt: "banner" %>
+</div>
+<div class="ourcontainer">
+ <ul id="genders">
+  <% genders = ["female", "male"]%>
+   <% genders.each do |gender| %>
+     <li>
+       <%= link_to clothings_path(gender: gender), class: "card-link" do %>
+         <div class="card">
+         <div class="card-overlay"></div>
+           <div class="card-content">
+             <%= gender %>
+           </div>
+         </div>
+       <% end %>
+     </li>
+   <% end %>
+ </ul>
+</div>

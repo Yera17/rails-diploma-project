@@ -9,4 +9,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :clothings, only: [:index, :show] do
+    resources :purchases, only: [:new, :create]
+    resources :favorites, only: [:new, :create]
+    resources :reviews, only: [:index, :new, :create]
+  end
+  resources :favorites, only: [:destroy]
+  resources :reviews, only: [:edit, :update, :destroy]
+  get "/manage", to: "pages#manage", as: :manage
+  get "/about", to: "pages#about", as: :about
 end
