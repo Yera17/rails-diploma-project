@@ -1,2 +1,27 @@
-<h1>Clothings#index</h1>
-<p>Find me in app/views/clothings/index.html.erb</p>
+
+  <div class="container d-flex flex-column">
+    <div class="mb-5">
+      <h1 class="home-title">All for <%= @gender.capitalize %></h1>
+    </div>
+    <div class="row g-3">
+      <% @clothings.each do |clothing| %>
+        <div class="col-12 col-md-6 col-lg-3">
+          <!-- Main container for each clothing -->
+          <div class="clothing-card">
+            <!-- Image container -->
+            <div class="clothing-image-container">
+              <%# <img src="<%# asset_path(clothing.image_path) %>" alt="<%# clothing.name %>" class="clothing-image"> %>
+            </div>
+
+            <!-- Attributes container -->
+            <div class="clothing-attributes-container">
+              <h2 class="clothing-title"><%= clothing.title %></h2>
+              <p class="clothing-description"><%= clothing.description %></p>
+              <p class="clothing-price">$<%= clothing.price %></p>
+              <%= link_to 'View clothing', clothing_path(clothing), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
