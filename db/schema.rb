@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_28_115200) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_30_161212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_28_115200) do
     t.datetime "updated_at", null: false
     t.index ["clothing_id"], name: "index_favorites_on_clothing_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "source"
+    t.bigint "clothing_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clothing_id"], name: "index_images_on_clothing_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -75,6 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_28_115200) do
 
   add_foreign_key "favorites", "clothings"
   add_foreign_key "favorites", "users"
+  add_foreign_key "images", "clothings"
   add_foreign_key "purchases", "clothings"
   add_foreign_key "purchases", "users"
   add_foreign_key "reviews", "clothings"
